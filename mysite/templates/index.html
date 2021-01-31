@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1380720351&auto=1&height=66"></iframe>
+<h1>用户列表信息</h1>
+<table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for row in user_list_dict %}
+            <tr>
+                <th>{{row.id}}</th>
+                <th>{{row.name}}</th>
+                <th>{{row.email}}</th>
+                <th>
+                    <a>编辑</a> | <a href="/login/">删除</a>
+                </th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

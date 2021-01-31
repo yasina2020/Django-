@@ -1,6 +1,6 @@
 from django.shortcuts import HttpResponse, render, redirect
-import pymysql
 from utils import sqlhelp
+import json
 
 def login(request):
     """
@@ -64,7 +64,7 @@ def edit_class(request):
         nid = request.GET.get('nid')
         class_name = request.POST.get('class_name')
         sqlhelp.modify("update class set class_name=%s where id=%s", [class_name, nid, ])
-        return redirect('/class/')
+        return redirect('/class')
 
 
 def teacher(request):
@@ -78,7 +78,7 @@ def add_teacher(request):
     else:
         v = request.POST.get('th_name')
         sqlhelp.modify("insert into teacher(th_name) value(%s)", [v, ])
-        return redirect('/teacher/')
+        return redirect('/teacher')
 
 
 def del_teacher(request):
@@ -97,11 +97,12 @@ def edit_teacher(request):
         nid = request.GET.get('nid')
         th_name = request.POST.get('th_name')
         sqlhelp.modify("update teacher set th_name=%s where id=%s", [th_name, nid, ])
-        return redirect('/teacher/')
+        return redirect('/teacher')
 
 
 def student(request):
-    stu_list = sqlhelp.get_list("SELECT s.id,stu_name,class_id,class_name FROM student  s,class WHERE s.class_id=class.id", [])
+    stu_list = sqlhelp.get_list(
+        "SELECT s.id,stu_name,class_id,class_name FROM student  s,class WHERE s.class_id=class.id", [])
     #  id stu_name class_id class_name
     #  1   张三    4         初中二年级
     return render(request, 'student.html', {'stu_list': stu_list})
@@ -115,7 +116,7 @@ def add_student(request):
         class_id = request.POST.get('class_id')
         stu_name = request.POST.get('stu_name')
         sqlhelp.modify("insert into student(stu_name,class_id) value(%s,%s)", [stu_name, class_id, ])
-        return redirect('/student/')
+        return redirect('/student')
 
 
 def del_student(request):
@@ -135,4 +136,56 @@ def edit_student(request):
         stu_name = request.POST.get('stu_name')
         class_id = request.POST.get('class_id')
         sqlhelp.modify("update student set stu_name=%s,class_id=%s where id=%s", [stu_name, class_id, nid, ])
-        return redirect('/student/')
+        return redirect('/student')
+
+
+def add_class_m(request):
+    ret = {'status': True, 'message': None}
+    class_name = request.POST.get('class_name')
+    if len(class_name) > 0:
+        sqlhelp.modify("insert into class(class_name) value(%s)", [class_name, ])
+    else:
+        ret['status'] = False
+        ret['message'] = '内容不能为空'
+    return HttpResponse(json.dumps(ret))
+
+
+def edit_class_m(request):
+    ret = {'status': True, 'message': None}
+    try:
+        nid = request.POST.get('nid')
+        class_name = request.POST.get('class_name')
+        sqlhelp.modify('update class set class_name=%s where id=%s', [class_name, nid, ])
+    except Exception as e:
+        ret['status'] = False
+        ret['message'] = e
+        # 因为httpresponse只能传字符串，所以在后端用json.dumps()将其转化为字符串
+    return HttpResponse(json.dumps(ret))
+
+
+
+def add_teacher_m(request):
+    ret = {'status': True, 'message': None}
+    th_name = request.POST.get('th_name')
+    if len(th_name) > 0:
+        sqlhelp.modify("insert into teacher(th_name) value(%s)", [th_name, ])
+    else:
+        ret['status'] = False
+        ret['message'] = '内容不能为空'
+    return HttpResponse(json.dumps(ret))
+
+
+
+def edit_teacher_m(request):
+    ret = {'status': True, 'message': None}
+    try:
+        nid = request.POST.get('nid')
+        th_name = request.POST.get('th_name')
+        sqlhelp.modify('update teacher set th_name=%s where id=%s', [th_name, nid, ])
+    except Exception as e:
+        ret['status'] = False
+        ret['message'] = e
+        # 因为httpresponse只能传字符串，所以在后端用json.dumps()将其转化为字符串
+    return HttpResponse(json.dumps(ret))
+
+

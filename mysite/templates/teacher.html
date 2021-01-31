@@ -3,16 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>教师信息表</title>
+    <style>
+        .hide{
+            display: none;
+        }
+        .shadow{
+            position: fixed;
+            left: 0;
+            top:0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.5;
+            background-color: black;
+            z-index: 999;
+        }
+        .modal{
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            height: 300px;
+            width: 400px;
+            background-color: white;
+            margin-left: -200px;
+            margin-top: -250px;
+        }
+    </style>
 </head>
 <body>
 <h1>教师信息</h1>
 <a href="/add_teacher">添加教师</a>
+<a onclick="showModal();">对话框添加教师</a>
 <table border="1">
     <thead>
     <tr>
         <th>ID</th>
         <th>姓名</th>
         <th>操作</th>
+        <th>对话框操作</th>
     </tr>
     </thead>
     <tbody>
@@ -25,9 +53,97 @@
             |
             <a href="/edit_teacher/?nid={{row.id}}&th_name={{row.th_name}}">编辑</a>
         </th>
+        <th>
+           <a>对话框删除</a>
+           |
+           <a onclick="showEditTeacher(this);">对话框编辑</a>
+        </th>
     </tr>
     {%endfor%}
     </tbody>
 </table>
+
+    <div id="shadow" class="shadow hide" onclick="CanelModal();"></div>
+    <div id="modal" class="modal hide">
+        <form method="POST" action="/add_teacher_m/">
+            <span id="errormsg"></span>
+            <p>
+                <input id="th_name" type="text" required="required">
+            </p>
+            <input type="button" value="提交" onclick="AjaxSend();">
+            <input type="button" value="取消" onclick="CanelModal();">
+        </form>
+    </div>
+
+    <div id="EditTeacherModal" class="modal hide">
+        <p><input  id="EditTeacherName" type="text" required="required" ></p>
+        <p><input  id="EditTeacherId" type="text" hidden="hidden" ></p>
+        <input type="button" value="提交" onclick="SendEditTeacher();">
+        <input type="button" value="取消" onclick="CanelModal();">
+    </div>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<!--    addModalTeacher-->
+    <script>
+        function showModal() {
+            document.getElementById('shadow').classList.remove('hide');
+            document.getElementById('modal').classList.remove('hide');
+        }
+        function CanelModal() {
+            document.getElementById('shadow').classList.add('hide');
+            document.getElementById('modal').classList.add('hide');
+            document.getElementById('EditTeacherModal').classList.add('hide');
+        }
+        function AjaxSend() {
+            $.ajax({
+                url:'/add_teacher_m/',
+                type:'POST',
+                data:{'th_name': $('#th_name').val()},//将data数据以POST方式发送到指定的url中
+                success:function (arg) {  //后端处理完后自动执行这个函数，并返回新data
+                    arg = JSON.parse(arg);
+                    if(arg.status){
+                        location.reload();
+                    }
+                    else {
+                        $('#errormsg').text(arg)
+                    }
+
+                }
+            })
+
+        }
+    </script>
+
+<!--    editModalTeacher-->
+    <script>
+        function showEditTeacher(ths) {
+            document.getElementById('shadow').classList.remove('hide');
+            document.getElementById('EditTeacherModal').classList.remove('hide');
+            let v = $(ths).parent().prevAll();
+            $('#EditTeacherName').val($(v[1]).text())
+            $('#EditTeacherId').val($(v[2]).text())
+        }
+        function SendEditTeacher() {
+            let nid=$('#EditTeacherId').val();
+            let th_name=$('#EditTeacherName').val();
+            $.ajax({
+                url:'/edit_teacher_m/',
+                type:'POST',
+                data:{'nid':nid,'th_name':th_name},
+                success: function (arg) {
+                    //JSON.parse(str)-->对象
+                    //JSON.stringify(对象)-->str
+                    arg = JSON.parse(arg);
+                    if(arg.status){
+                      //  location.href='/class/'; //跳转到指定url
+                        location.reload(); //当前页面刷新
+                    }
+                    else {
+                        alert(arg.message)
+                    }
+                }
+            })
+        }
+    </script>
 </body>
 </html>

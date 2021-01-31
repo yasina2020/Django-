@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cce756a-33d8-4704-965c-b2c3a2e002ae" name="默认更改列表" comment="" />
+    <list default="true" id="4cce756a-33d8-4704-965c-b2c3a2e002ae" name="默认更改列表" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/sta/jquery-3.5.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/jquery-3.5.1.min.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,10 +16,12 @@
         <option value="CSS File" />
         <option value="HTML File" />
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1ndQywRKMTeewZJJ75L5v8aSoS1" />
@@ -29,6 +34,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/mysite/templates" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -113,6 +119,7 @@
       <workItem from="1611807031862" duration="327000" />
       <workItem from="1611807465622" duration="9165000" />
       <workItem from="1611977911341" duration="19622000" />
+      <workItem from="1612071635835" duration="14062000" />
     </task>
     <servers />
   </component>

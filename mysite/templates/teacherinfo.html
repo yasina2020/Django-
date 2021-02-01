@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>教师任教班级信息表</title>
+</head>
+<body>
+<h3>教师任教班级信息表</h3>
+<a>添加信息</a>
+<table border="2">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>任教老师</th>
+        <th>任教班级</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for row in th_to_c_list%}
+    <tr>
+        <th>{{row.tid}}</th>
+        <th>{{row.th_name}}</th>
+        <th>
+            {%for item in row.c_name%}
+            <span>{{item}}</span>
+            {%endfor%}
+        </th>
+        <th>
+            <a href="">编辑</a>
+            |
+            <a href="">删除</a>
+        </th>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+</body>
+</html>

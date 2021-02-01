@@ -2,6 +2,7 @@ from django.shortcuts import HttpResponse, render, redirect
 from utils import sqlhelp
 import json
 
+
 def login(request):
     """
     处理用户请求，并返回内容
@@ -164,7 +165,6 @@ def edit_class_m(request):
     return HttpResponse(json.dumps(ret))
 
 
-
 def add_teacher_m(request):
     ret = {'status': True, 'message': None}
     th_name = request.POST.get('th_name')
@@ -174,7 +174,6 @@ def add_teacher_m(request):
         ret['status'] = False
         ret['message'] = '内容不能为空'
     return HttpResponse(json.dumps(ret))
-
 
 
 def edit_teacher_m(request):
@@ -202,6 +201,7 @@ def add_student_m(request):
         ret['message'] = '姓名不能为空'
     return HttpResponse(json.dumps(ret))
 
+
 def edit_student_m(request):
     ret = {'status': True, 'message': None}
     try:
@@ -214,4 +214,25 @@ def edit_student_m(request):
         ret['message'] = str(e)
         # 因为httpresponse只能传字符串，所以在后端用json.dumps()将其转化为字符串
     return HttpResponse(json.dumps(ret))
+
+
+def teacherinfo(request):
+    tf = sqlhelp.get_list("""
+        SELECT r.id,t.th_name,t_id,c_id,c.class_name
+        FROM teacher t,class c,relationship r 
+        WHERE t.id=r.t_id AND c.id=r.c_id
+    """, [])
+
+    tn = {}
+
+    for row in tf:
+        tid = row['t_id']
+        if tid in tn:
+            tn[tid]['c_name'].append(row['class_name'])
+        else:
+            tn[tid] = {'tid': row['t_id'], 'th_name': row['th_name'], 'c_name': [row['class_name'], ]}
+
+    print(tn.values())
+
+    return render(request, 'teacherinfo.html', {'th_to_c_list': tn.values()})
 

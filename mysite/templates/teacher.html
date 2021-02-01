@@ -54,8 +54,6 @@
             <a href="/edit_teacher/?nid={{row.id}}&th_name={{row.th_name}}">编辑</a>
         </th>
         <th>
-           <a>对话框删除</a>
-           |
            <a onclick="showEditTeacher(this);">对话框编辑</a>
         </th>
     </tr>
@@ -66,7 +64,7 @@
     <div id="shadow" class="shadow hide" onclick="CanelModal();"></div>
     <div id="modal" class="modal hide">
         <form method="POST" action="/add_teacher_m/">
-            <span id="errormsg"></span>
+            <span id="errormsg" class="hide"></span>
             <p>
                 <input id="th_name" type="text" required="required">
             </p>
@@ -93,6 +91,7 @@
             document.getElementById('shadow').classList.add('hide');
             document.getElementById('modal').classList.add('hide');
             document.getElementById('EditTeacherModal').classList.add('hide');
+            document.getElementById('errormsg').classList.add('hide');
         }
         function AjaxSend() {
             $.ajax({
@@ -105,7 +104,7 @@
                         location.reload();
                     }
                     else {
-                        $('#errormsg').text(arg)
+                        $('#errormsg').text(arg.message)
                     }
 
                 }

@@ -102,10 +102,11 @@ def edit_teacher(request):
 
 def student(request):
     stu_list = sqlhelp.get_list(
-        "SELECT s.id,stu_name,class_id,class_name FROM student  s,class WHERE s.class_id=class.id", [])
+        "SELECT s.id,stu_name,class_id,class_name FROM student  s,class WHERE s.class_id=class.id  order by s.id", [])
     #  id stu_name class_id class_name
     #  1   张三    4         初中二年级
-    return render(request, 'student.html', {'stu_list': stu_list})
+    class_list = sqlhelp.get_list("select * from class", [])
+    return render(request, 'student.html', {'stu_list': stu_list, 'class_list': class_list})
 
 
 def add_student(request):
@@ -188,4 +189,29 @@ def edit_teacher_m(request):
         # 因为httpresponse只能传字符串，所以在后端用json.dumps()将其转化为字符串
     return HttpResponse(json.dumps(ret))
 
+
+def add_student_m(request):
+    ret = {'status': True, 'message': None}
+    stu_name = request.POST.get('stu_name_add')
+    class_id = request.POST.get('class_id_add')
+    print(request.POST)
+    if len(stu_name) > 0:
+        sqlhelp.modify('insert into student(stu_name,class_id) value(%s,%s)', [stu_name, class_id])
+    else:
+        ret['status'] = False
+        ret['message'] = '姓名不能为空'
+    return HttpResponse(json.dumps(ret))
+
+def edit_student_m(request):
+    ret = {'status': True, 'message': None}
+    try:
+        stu_id = request.POST.get('stu_id')
+        stu_name = request.POST.get('stu_name')
+        class_id = request.POST.get('class_id')
+        sqlhelp.modify("update student set stu_name=%s,class_id=%s where id=%s", [stu_name, class_id, stu_id, ])
+    except Exception as e:
+        ret['status'] = False
+        ret['message'] = str(e)
+        # 因为httpresponse只能传字符串，所以在后端用json.dumps()将其转化为字符串
+    return HttpResponse(json.dumps(ret))
 

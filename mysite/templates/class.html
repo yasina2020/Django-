@@ -53,8 +53,6 @@
                <a href="/edit_class/?nid={{row.id}}">编辑</a>
            </th>
             <th>
-               <a>对话框删除</a>
-               |
                <a onclick="showEditClass(this);">对话框编辑</a>
            </th>
         </tr>
@@ -91,6 +89,7 @@
             document.getElementById('shadow').classList.add('hide');
             document.getElementById('modal').classList.add('hide');
             document.getElementById('EditClassModal').classList.add('hide');
+            document.getElementById('errormsg').classList.add('hide');
         }
         function AjaxSend() {
             $.ajax({
@@ -103,7 +102,7 @@
                         location.reload();
                     }
                     else {
-                        $('#errormsg').text(arg)
+                        $('#errormsg').text(arg.message)
                     }
 
                 }

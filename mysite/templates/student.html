@@ -32,7 +32,7 @@
 </head>
 <body>
 <a href="/add_student">添加学生</a>
-<a onclick="showModal();">对话框添加</a>
+<a id="ShowModal">对话框添加</a>
 <table border="1">
     <thead>
     <tr>
@@ -48,15 +48,13 @@
     <tr>
        <th>{{row.id}}</th>
        <th>{{row.stu_name}}</th>
-       <th>{{row.class_name}}</th>
+       <th c_id="{{row.class_id}}">{{row.class_name}}</th>
        <th>
            <a href="/del_student/?nid={{row.id}}">删除</a>
            |
            <a href="/edit_student/?nid={{row.id}}">编辑</a>
        </th>
         <th>
-           <a>对话框删除</a>
-           |
            <a onclick="showEditStudent(this);">对话框编辑</a>
        </th>
     </tr>
@@ -64,24 +62,112 @@
     </tbody>
 </table>
 
- <div id="shadow" class="shadow hide" onclick="CanelModal();"></div>
+    <div id="shadow" class="shadow hide"></div>
+<!--    AddModalStudent-->
     <div id="modal" class="modal hide">
-        <form method="POST" action="/add_student_m/">
-            <span id="errormsg"></span>
+            <span id="errormsg" class="hide"></span>
             <p>学生姓名：
-                <input id="stu_name" type="text" required="required">
+                <input id="stu_name_add" type="text" required="required">
             </p>
             <p>班级：
-                <select name="class_id" >
+                <select id="class_id_add" >
                     {%for row in class_list%}
                     <option value="{{row.id}}">{{row.class_name}}</option>
                     {%endfor%}
                 </select>
             </p>
-            <input type="button" value="提交" onclick="AjaxSend();">
-            <input type="button" value="取消" onclick="CanelModal();">
-        </form>
+            <input id="AjaxSend"   type="button" value="提交" >
+            <input id="CanelModal" type="button" value="取消">
     </div>
-
+<!--    EditModalStudent-->
+    <div id="EditSrudentModal" class="modal hide">
+        <span id="errormsg" class="hide"></span>
+        <p>学生姓名：
+            <input id="stu_name_edit" type="text" required="required" placeholder="姓名">
+            <input id="stu_id_edit" type="text" style="display: none">
+        </p>
+        <p>班级：
+            <select id="class_id_edit">
+                {%for row in class_list%}
+                <option value="{{row.id}}">{{row.class_name}}</option>
+                {%endfor%}
+            </select>
+        </p>
+        <input id="AjaxSendEdit"   type="button" value="提交" >
+        <input id="CanelModal" type="button" value="取消">
+    </div>
 </body>
+
+ <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<!--    AddModalStudent-->
+    <script>
+        $('#ShowModal').click(function(){
+            document.getElementById('shadow').classList.remove('hide');
+            document.getElementById('modal').classList.remove('hide');
+        });
+        $('#CanelModal,#shadow').click(function(){
+            $('#errormsg,#shadow,#modal,#EditSrudentModal').addClass('hide');
+        });
+        $('#AjaxSend').click(function () {
+            let stu_name = $('#stu_name_add').val();
+            let class_id = $('#class_id_add option:selected').val();
+
+            console.log(stu_name,class_id)
+             $.ajax({
+                url:'/add_student_m/',
+                type:'POST',
+                data:{'stu_name_add': stu_name, 'class_id_add': class_id},
+                success:function (arg) {
+                    arg = JSON.parse(arg);
+                    if(arg.status)
+                        location.reload();
+                    else {
+                        $('#errormsg').removeClass('hide');
+                        $('#errormsg').text(arg.message);
+                    }
+
+                }
+            })
+        })
+    </script>
+<!--    EditModalStudent-->
+<script>
+    function showEditStudent(ths){
+        $('#shadow,#EditSrudentModal').removeClass('hide');
+
+        let v = $(ths).parent().prevAll();
+        let stu_id = $(v[3]).text();
+        let stu_name = $(v[2]).text();
+        //那自定义属性的值用attr(self_class_name)
+        let c_id = $(v[1]).attr('c_id');
+        console.log(stu_name,stu_id,c_id);
+        $('#stu_name_edit').val(stu_name);
+        $('#stu_id_edit').val(stu_id);
+        $('#class_id_edit').val(c_id);
+    }
+
+    $('#AjaxSendEdit').click(function () {
+        let stu_id = $('#stu_id_edit').val();
+        let stu_name = $('#stu_name_edit').val();
+        let class_id =  $('#class_id_edit').val();
+        $.ajax({
+                url:'/edit_student_m/',
+                type:'POST',
+                data:{'stu_id':stu_id, 'stu_name': stu_name, 'class_id': class_id},
+                success:function (arg) {
+                    arg = JSON.parse(arg);
+                    if(arg.status)
+                        location.reload();
+                    else {
+                        $('#errormsg').removeClass('hide');
+                        $('#errormsg').text(arg.message);
+                    }
+
+                }
+            })
+    })
+
+
+</script>
+
 </html>

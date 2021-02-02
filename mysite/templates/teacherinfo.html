@@ -6,7 +6,7 @@
 </head>
 <body>
 <h3>教师任教班级信息表</h3>
-<a>添加信息</a>
+<a href="/add_teacherinfo">添加信息</a>
 <table border="2">
     <thead>
     <tr>
@@ -27,9 +27,9 @@
             {%endfor%}
         </th>
         <th>
-            <a href="">编辑</a>
+            <a href="/edit_teacherinfo/?t_id={{row.tid}}">编辑</a>
             |
-            <a href="">删除</a>
+            <a href="/del_teacherinfo/?t_id={{row.tid}}">删除</a>
         </th>
     </tr>
     {%endfor%}

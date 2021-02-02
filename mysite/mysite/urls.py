@@ -45,4 +45,7 @@ urlpatterns = [
     path('edit_student_m/', views.edit_student_m),
 
     path('teacherinfo/', views.teacherinfo),
+    path('add_teacherinfo/', views.add_teacherinfo),
+    path('edit_teacherinfo/', views.edit_teacherinfo),
+    path('del_teacherinfo/', views.del_teacherinfo),
 ]

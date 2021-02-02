@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add_teacherinfo</title>
+</head>
+<body>
+<h3>添加老师任教班级信息</h3>
+<form method="POST">
+    <p>老师姓名：<input type="text" name="th_name" required="required"></p>
+    <p>班级(多)：
+        <select name="class_id" multiple="multiple">
+        {%for row in class_list%}
+            <option value="{{row.id}}">{{row.class_name}}</option>
+        {%endfor%}
+        </select>
+    </p>
+    <input type="submit">
+</form>
+</body>
+</html>

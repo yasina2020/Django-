@@ -220,7 +220,7 @@ def teacherinfo(request):
     tf = sqlhelp.get_list("""
         SELECT r.id,t.th_name,t_id,c_id,c.class_name
         FROM teacher t,class c,relationship r 
-        WHERE t.id=r.t_id AND c.id=r.c_id
+        WHERE t.id=r.t_id AND c.id=r.c_id order by r.id
     """, [])
 
     tn = {}
@@ -235,4 +235,66 @@ def teacherinfo(request):
     print(tn.values())
 
     return render(request, 'teacherinfo.html', {'th_to_c_list': tn.values()})
+
+
+def add_teacherinfo(request):
+    if request.method == 'GET':
+        class_list = sqlhelp.get_list('select * from class', [])
+        print(class_list)
+        return render(request, 'add_teacherinfo.html', {'class_list': class_list})
+    else:
+        class_ids = request.POST.getlist('class_id')
+        th_name = request.POST.get('th_name')
+
+        obj = sqlhelp.SqlHelp()
+        th_id = obj.creat('insert into teacher(th_name) values(%s)', [th_name, ])
+        data_list = []
+        for class_id in class_ids:
+            temp = (th_id, class_id)
+            data_list.append(temp)
+        obj.multiple_modify('insert into relationship(t_id,c_id) values(%s,%s)', data_list)
+        obj.close()
+        print(data_list)
+        return redirect('/teacherinfo')
+
+
+def edit_teacherinfo(request):
+    if request.method == 'GET':
+        t_id = request.GET.get('t_id')
+        obj = sqlhelp.SqlHelp()
+        th_name = obj.get_one('select * from teacher where id=%s', [t_id, ])
+        class_list = obj.get_list('select * from class', [])
+        th_class_list = obj.get_list('select c_id from relationship where t_id=%s', [t_id, ])
+        obj.close()
+        tc_list = []
+        for row in th_class_list:
+            tc_list.append(row['c_id'])
+        return render(request, 'edit_teacherinfo.html',
+                      {'th_name': th_name, 'tc_list': tc_list, 'class_list': class_list})
+
+    else:
+        th_id = request.GET.get('tid')
+        th_name = request.POST.get('th_name')
+        class_ids = request.POST.getlist('class_id')
+        obj = sqlhelp.SqlHelp()
+        obj.modify('update teacher set th_name=%s where id=%s', [th_name, th_id, ])
+
+        # 更新relationship表，把之前tid数据全删掉 把新数据添加
+        obj.modify('delete from relationship where t_id=%s', [th_id, ])
+        data_list = []
+        for row in class_ids:
+            temp = (th_id, row)
+            data_list.append(temp)
+        obj.multiple_modify('insert into relationship(t_id,c_id) values(%s,%s)', data_list)
+        obj.close()
+        return redirect('/teacherinfo/')
+
+def del_teacherinfo(request):
+    t_id = request.GET.get('t_id')
+    obj = sqlhelp.SqlHelp()
+    obj.modify('delete from teacher where id=%s', [t_id, ])
+    obj.modify('delete from relationship where t_id=%s', [t_id, ])
+    obj.close()
+    return redirect('/teacherinfo/')
+
 

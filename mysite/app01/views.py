@@ -231,10 +231,9 @@ def teacherinfo(request):
             tn[tid]['c_name'].append(row['class_name'])
         else:
             tn[tid] = {'tid': row['t_id'], 'th_name': row['th_name'], 'c_name': [row['class_name'], ]}
+    class_list = sqlhelp.get_list('select * from class', [])
 
-    print(tn.values())
-
-    return render(request, 'teacherinfo.html', {'th_to_c_list': tn.values()})
+    return render(request, 'teacherinfo.html', {'th_to_c_list': tn.values(), 'class_list': class_list})
 
 
 def add_teacherinfo(request):
@@ -297,4 +296,35 @@ def del_teacherinfo(request):
     obj.close()
     return redirect('/teacherinfo/')
 
+def get_class_list(request):
+    class_list = sqlhelp.get_list('select * from class', [])
+    return HttpResponse(json.dumps(class_list))
 
+def add_teacherinfo_m(request):
+    ret = {'status': True, 'message': None}
+    th_name = request.POST.get('th_name')
+    class_ids = request.POST.getlist('class_ids')
+    if len(th_name) > 0:
+        obj = sqlhelp.SqlHelp()
+        th_id = obj.creat('insert into teacher(th_name) values(%s)', [th_name, ])
+        data = []
+        for row in class_ids:
+            temp = (th_id, row)
+            data.append(temp)
+        obj.multiple_modify('insert into relationship(t_id,c_id) values(%s,%s)', data)
+    else:
+        ret['status'] = False
+        ret['message'] = '姓名不能为空'
+    return HttpResponse(json.dumps(ret))
+
+
+def edit_teacherinfo_m(request):
+    if request.method == "GET":
+        th_id = request.GET.get('th_id')
+        ced_list = sqlhelp.get_list('select c_id from relationship where t_id=%s', [th_id, ])
+        class_list = sqlhelp.get_list('select * from class', [])
+        c_list = []
+        for row in class_list:
+            c_list.append(row['c_id'])
+        print(c_list)
+        return HttpResponse(json.dumps(c_list))

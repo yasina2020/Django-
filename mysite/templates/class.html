@@ -3,64 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        .hide{
-            display: none;
-        }
-        .shadow{
-            position: fixed;
-            left: 0;
-            top:0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.5;
-            background-color: black;
-            z-index: 999;
-        }
-        .modal{
-            position: fixed;
-            z-index: 1000;
-            left: 50%;
-            top: 50%;
-            height: 300px;
-            width: 400px;
-            background-color: white;
-            margin-left: -200px;
-            margin-top: -250px;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/plug/bootstrap-3/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/plug/bootstrap-3/js/bootstrap.js" />
+    <link rel="stylesheet" href="/static/common.css" />
 </head>
 <body>
-    <a href="/add_class">添加</a>
-    <a onclick="showModal();">对话框添加</a>
-    <table border="1">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>班级名称</th>
-            <th>操作</th>
-            <th>对话框操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        {%for row in class_list%}
-        <tr>
-           <th>{{row.id}}</th>
-           <th>{{row.class_name}}</th>
-           <th>
-               <a href="/del_class/?nid={{row.id}}">删除</a>
-               |
-               <a href="/edit_class/?nid={{row.id}}">编辑</a>
-           </th>
-            <th>
-               <a onclick="showEditClass(this);">对话框编辑</a>
-           </th>
-        </tr>
-        {%endfor%}
-        </tbody>
-    </table>
-    <div id="shadow" class="shadow hide" onclick="CanelModal();"></div>
-    <div id="modal" class="modal hide">
+    <div style="margin: 0 auto;width: 700px">
+        <h3>班级信息</h3>
+        <div style="margin: 10px 0">
+            <a href="/add_class" class="btn btn-primary">添加</a>
+            <a onclick="showModal();" class="btn btn-info">对话框添加</a>
+        </div>
+        <table border="1" class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>班级名称</th>
+                <th>操作</th>
+                <th>对话框操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for row in class_list%}
+            <tr>
+               <th>{{row.id}}</th>
+               <th>{{row.class_name}}</th>
+               <th>
+                   <a href="/del_class/?nid={{row.id}}" class="glyphicon glyphicon-trash">删除</a>
+                   |
+                   <a href="/edit_class/?nid={{row.id}}" class="glyphicon glyphicon-pencil">编辑</a>
+               </th>
+                <th>
+                   <a onclick="showEditClass(this);" class="glyphicon glyphicon-wrench">对话框编辑</a>
+               </th>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    <div id="shadow" class="f_shadow f_hide" onclick="CanelModal();"></div>
+    <div id="modal" class="f_modal f_hide">
         <form method="POST" action="/add_class_m/">
             <span id="errormsg"></span>
             <p>
@@ -71,7 +53,7 @@
         </form>
     </div>
 
-    <div id="EditClassModal" class="modal hide">
+    <div id="EditClassModal" class="f_modal f_hide">
         <p><input  id="EditClassName" type="text" required="required" ></p>
         <p><input  id="EditClassId" type="text" hidden="hidden" ></p>
         <input type="button" value="提交" onclick="SendEditClass();">
@@ -82,14 +64,10 @@
 <!--    addModalClass-->
     <script>
         function showModal() {
-            document.getElementById('shadow').classList.remove('hide');
-            document.getElementById('modal').classList.remove('hide');
+            $('#shadow,#modal').removeClass('f_hide');
         }
         function CanelModal() {
-            document.getElementById('shadow').classList.add('hide');
-            document.getElementById('modal').classList.add('hide');
-            document.getElementById('EditClassModal').classList.add('hide');
-            document.getElementById('errormsg').classList.add('hide');
+            $('#shadow,#modal,#EditClassModal,#errormsg').addClass('f_hide');
         }
         function AjaxSend() {
             $.ajax({
@@ -113,8 +91,7 @@
 <!--    editModalClass-->
     <script>
         function showEditClass(ths) {
-            document.getElementById('shadow').classList.remove('hide');
-            document.getElementById('EditClassModal').classList.remove('hide');
+            $('#shadow,#EditClassModal').removeClass('f_hide');
             let v = $(ths).parent().prevAll();
             $('#EditClassName').val($(v[1]).text())
             $('#EditClassId').val($(v[2]).text())

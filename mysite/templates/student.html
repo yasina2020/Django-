@@ -3,69 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-        <style>
-        .hide{
-            display: none;
-        }
-        .shadow{
-            position: fixed;
-            left: 0;
-            top:0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.5;
-            background-color: black;
-            z-index: 999;
-        }
-        .modal{
-            position: fixed;
-            z-index: 1000;
-            left: 50%;
-            top: 50%;
-            height: 300px;
-            width: 400px;
-            background-color: white;
-            margin-left: -200px;
-            margin-top: -250px;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/plug/bootstrap-3/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/plug/bootstrap-3/js/bootstrap.js" />
+    <link rel="stylesheet" href="/static/common.css" />
 </head>
 <body>
-<a href="/add_student">添加学生</a>
-<a id="ShowModal">对话框添加</a>
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>学生名称</th>
-        <th>班级名称</th>
-        <th>操作</th>
-        <th>对话框操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    {%for row in stu_list%}
-    <tr>
-       <th>{{row.id}}</th>
-       <th>{{row.stu_name}}</th>
-       <th c_id="{{row.class_id}}">{{row.class_name}}</th>
-       <th>
-           <a href="/del_student/?nid={{row.id}}">删除</a>
-           |
-           <a href="/edit_student/?nid={{row.id}}">编辑</a>
-       </th>
-        <th>
-           <a onclick="showEditStudent(this);">对话框编辑</a>
-       </th>
-    </tr>
-    {%endfor%}
-    </tbody>
-</table>
-
-    <div id="shadow" class="shadow hide"></div>
+<div style="margin: 0 auto;width: 700px">
+    <h3>学生信息</h3>
+    <div style="margin: 10px 0">
+        <a href="/add_student" class="btn btn-primary">添加学生</a>
+        <a id="ShowModal" class="btn btn-info">对话框添加</a>
+    </div>
+    <table border="1" class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>学生名称</th>
+            <th>班级名称</th>
+            <th>操作</th>
+            <th>对话框操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for row in stu_list%}
+        <tr>
+           <th>{{row.id}}</th>
+           <th>{{row.stu_name}}</th>
+           <th c_id="{{row.class_id}}">{{row.class_name}}</th>
+           <th>
+               <a href="/del_student/?nid={{row.id}}">删除</a>
+               |
+               <a href="/edit_student/?nid={{row.id}}">编辑</a>
+           </th>
+            <th>
+               <a onclick="showEditStudent(this);">对话框编辑</a>
+           </th>
+        </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+</div>
+    <div id="shadow" class="f_shadow f_hide"></div>
 <!--    AddModalStudent-->
-    <div id="modal" class="modal hide">
-            <span id="errormsg" class="hide"></span>
+    <div id="modal" class="f_modal f_hide">
+            <span id="errormsg" class="f_hide"></span>
             <p>学生姓名：
                 <input id="stu_name_add" type="text" required="required">
             </p>
@@ -80,8 +61,8 @@
             <input id="CanelModal" type="button" value="取消">
     </div>
 <!--    EditModalStudent-->
-    <div id="EditSrudentModal" class="modal hide">
-        <span id="errormsg" class="hide"></span>
+    <div id="EditSrudentModal" class="f_modal f_hide">
+        <span id="errormsg" class="f_hide"></span>
         <p>学生姓名：
             <input id="stu_name_edit" type="text" required="required" placeholder="姓名">
             <input id="stu_id_edit" type="text" style="display: none">
@@ -102,11 +83,11 @@
 <!--    AddModalStudent-->
     <script>
         $('#ShowModal').click(function(){
-            document.getElementById('shadow').classList.remove('hide');
-            document.getElementById('modal').classList.remove('hide');
+            document.getElementById('shadow').classList.remove('f_hide');
+            document.getElementById('modal').classList.remove('f_hide');
         });
         $('#CanelModal,#shadow').click(function(){
-            $('#errormsg,#shadow,#modal,#EditSrudentModal').addClass('hide');
+            $('#errormsg,#shadow,#modal,#EditSrudentModal').addClass('f_hide');
         });
         $('#AjaxSend').click(function () {
             let stu_name = $('#stu_name_add').val();
@@ -133,7 +114,7 @@
 <!--    EditModalStudent-->
 <script>
     function showEditStudent(ths){
-        $('#shadow,#EditSrudentModal').removeClass('hide');
+        $('#shadow,#EditSrudentModal').removeClass('f_hide');
 
         let v = $(ths).parent().prevAll();
         let stu_id = $(v[3]).text();

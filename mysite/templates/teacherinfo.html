@@ -3,84 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>教师任教信息表</title>
-     <style>
-        .hide{
-            display: none;
-        }
-        .shadow{
-            position: fixed;
-            left: 0;
-            top:0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.5;
-            background-color: black;
-            z-index: 999;
-        }
-        .loading2{
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            height: 480px;
-            width: 640px;
-            margin-left: -240px;
-            margin-top: -320px;
-            background-image: url("/static/images/loading.gif");
-        }
-        .modal{
-            position: fixed;
-            z-index: 1000;
-            left: 50%;
-            top: 50%;
-            height: 300px;
-            width: 400px;
-            background-color: white;
-            margin-left: -200px;
-            margin-top: -250px;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/plug/bootstrap-3/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/plug/bootstrap-3/js/bootstrap.js" />
+    <link rel="stylesheet" href="/static/common.css" />
 </head>
 <body>
-<h3>教师任教信息表</h3>
-<a href="/add_teacherinfo">添加任教信息</a>
-<a id="ShowModal">对话框添加</a>
-<table border="2">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>任教老师</th>
-        <th>任教班级</th>
-        <th>操作</th>
-        <th>对话框操作(未实现)</th>
-    </tr>
-    </thead>
-    <tbody>
-    {%for row in th_to_c_list%}
-    <tr>
-        <th>{{row.tid}}</th>
-        <th>{{row.th_name}}</th>
-        <th>
-            {%for item in row.c_name%}
-            <span>{{item}}</span>
-            {%endfor%}
-        </th>
-        <th>
-            <a href="/edit_teacherinfo/?t_id={{row.tid}}">编辑</a>
-            |
-            <a href="/del_teacherinfo/?t_id={{row.tid}}">删除</a>
-        </th>
-        <th>
-            <a onclick="th_edit(this);">对话框编辑</a>
-        </th>
-    </tr>
-    {%endfor%}
-    </tbody>
-</table>
-
-<div id="shadow" class="shadow hide"></div>
-<div id="loading" class="loading2 hide"></div>
-<div id="modal" class="modal hide">
-    <span id="errormsg" class="hide"></span>
+<div style="margin: 0 auto;width: 700px">
+    <h3>教师任教信息表</h3>
+    <div style="margin: 10px 0">
+        <a href="/add_teacherinfo" class="btn btn-primary">添加任教信息</a>
+        <a id="ShowModal" class="btn btn-info">对话框添加</a>
+    </div>
+    <table border="1" class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>任教老师</th>
+            <th>任教班级</th>
+            <th>操作</th>
+            <th>对话框操作(未实现)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for row in th_to_c_list%}
+        <tr>
+            <th>{{row.tid}}</th>
+            <th>{{row.th_name}}</th>
+            <th>
+                {%for item in row.c_name%}
+                <span>{{item}}</span>
+                {%endfor%}
+            </th>
+            <th>
+                <a href="/edit_teacherinfo/?t_id={{row.tid}}">编辑</a>
+                |
+                <a href="/del_teacherinfo/?t_id={{row.tid}}">删除</a>
+            </th>
+            <th>
+                <a onclick="th_edit(this);">对话框编辑</a>
+            </th>
+        </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+</div>
+<div id="shadow" class="f_shadow f_hide"></div>
+<div id="loading" class="f_loading2 f_hide"></div>
+<div id="modal" class="f_modal f_hide">
+    <span id="errormsg" class="f_hide"></span>
     <p>教师姓名：
         <input id="th_name_add" type="text" required="required">
     </p>
@@ -95,8 +65,8 @@
 </div>
 
 <!--    编辑教师任教信息-->
-<div id="editmodal" class="modal hide">
-    <span id="errormsg" class="hide"></span>
+<div id="editmodal" class="f_modal f_hide">
+    <span id="errormsg" class="f_hide"></span>
     <p>教师姓名：
         <input id="th_name_edit" type="text" required="required">
     </p>
@@ -121,13 +91,13 @@
 
     function cleanmodal(){
         $('#CanelModal,#shadow').click(function () {
-            $('#shadow,#modal,#editmodal').addClass('hide');
+            $('#shadow,#modal,#editmodal').addClass('f_hide');
         });
     }
 
     function showmodal(){
         $('#ShowModal').click(function () {
-            $('#shadow,#loading').removeClass('hide');
+            $('#shadow,#loading').removeClass('f_hide');
             $.ajax({
                 url:'/get_class_list/',
                 type:'GET',
@@ -141,8 +111,8 @@
                         tag.setAttribute('value',row.id);   //设置属性
                         $('#class_ids_add').append(tag); //将标签添加到网页
                     });
-                    $('#loading').addClass('hide');
-                    $('#modal').removeClass('hide');
+                    $('#loading').addClass('f_hide');
+                    $('#modal').removeClass('f_hide');
 
                 }
             });
@@ -164,7 +134,7 @@
                     if (arg.status)
                         location.reload();
                     else {
-                        $('#errormsg').removeClass('hide');
+                        $('#errormsg').removeClass('f_hide');
                         $('#errormsg').text(arg.message);
                     }
                 }
@@ -173,7 +143,7 @@
     }
 <!--    editModalTeacherInfo-->
     function th_edit(ths) {
-            $('#shadow,#editmodal').removeClass('hide');
+            $('#shadow,#editmodal').removeClass('f_hide');
             let v = $(ths).parent().prevAll();
             let th_id = $(v[3]).text();
             $('#th_name_edit').val($(v[2]).text());

@@ -3,66 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>教师信息表</title>
-    <style>
-        .hide{
-            display: none;
-        }
-        .shadow{
-            position: fixed;
-            left: 0;
-            top:0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.5;
-            background-color: black;
-            z-index: 999;
-        }
-        .modal{
-            position: fixed;
-            z-index: 1000;
-            left: 50%;
-            top: 50%;
-            height: 300px;
-            width: 400px;
-            background-color: white;
-            margin-left: -200px;
-            margin-top: -250px;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/plug/bootstrap-3/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/plug/bootstrap-3/js/bootstrap.js" />
+    <link rel="stylesheet" href="/static/common.css" />
 </head>
 <body>
-<h1>教师信息</h1>
-<a href="/add_teacher">添加教师</a>
-<a onclick="showModal();">对话框添加教师</a>
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>姓名</th>
-        <th>操作</th>
-        <th>对话框操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    {%for row in th_list%}
-    <tr>
-        <th>{{row.id}}</th>
-        <th>{{row.th_name}}</th>
-        <th>
-            <a href="/del_teacher/?nid={{row.id}}">删除</a>
-            |
-            <a href="/edit_teacher/?nid={{row.id}}&th_name={{row.th_name}}">编辑</a>
-        </th>
-        <th>
-           <a onclick="showEditTeacher(this);">对话框编辑</a>
-        </th>
-    </tr>
-    {%endfor%}
-    </tbody>
-</table>
-
-    <div id="shadow" class="shadow hide" onclick="CanelModal();"></div>
-    <div id="modal" class="modal hide">
+    <div style="margin: 0 auto;width: 700px">
+        <h1>教师信息</h1>
+        <div style="margin: 10px 0">
+            <a href="/add_teacher" class="btn btn-primary">添加教师</a>
+            <a onclick="showModal();" class="btn btn-info">对话框添加教师</a>
+        </div>
+        <table border="1" class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>操作</th>
+                <th>对话框操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for row in th_list%}
+            <tr>
+                <th>{{row.id}}</th>
+                <th>{{row.th_name}}</th>
+                <th>
+                    <a href="/del_teacher/?nid={{row.id}}">删除</a>
+                    |
+                    <a href="/edit_teacher/?nid={{row.id}}&th_name={{row.th_name}}">编辑</a>
+                </th>
+                <th>
+                   <a onclick="showEditTeacher(this);">对话框编辑</a>
+                </th>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    <div id="shadow" class="f_shadow f_hide" onclick="CanelModal();"></div>
+    <div id="modal" class="f_modal f_hide">
         <form method="POST" action="/add_teacher_m/">
             <span id="errormsg" class="hide"></span>
             <p>
@@ -73,7 +53,7 @@
         </form>
     </div>
 
-    <div id="EditTeacherModal" class="modal hide">
+    <div id="EditTeacherModal" class="f_modal f_hide">
         <p><input  id="EditTeacherName" type="text" required="required" ></p>
         <p><input  id="EditTeacherId" type="text" hidden="hidden" ></p>
         <input type="button" value="提交" onclick="SendEditTeacher();">
@@ -84,14 +64,14 @@
 <!--    addModalTeacher-->
     <script>
         function showModal() {
-            document.getElementById('shadow').classList.remove('hide');
-            document.getElementById('modal').classList.remove('hide');
+            document.getElementById('shadow').classList.remove('f_hide');
+            document.getElementById('modal').classList.remove('f_hide');
         }
         function CanelModal() {
-            document.getElementById('shadow').classList.add('hide');
-            document.getElementById('modal').classList.add('hide');
-            document.getElementById('EditTeacherModal').classList.add('hide');
-            document.getElementById('errormsg').classList.add('hide');
+            document.getElementById('shadow').classList.add('f_hide');
+            document.getElementById('modal').classList.add('f_hide');
+            document.getElementById('EditTeacherModal').classList.add('f_hide');
+            document.getElementById('errormsg').classList.add('f_hide');
         }
         function AjaxSend() {
             $.ajax({
@@ -116,8 +96,8 @@
 <!--    editModalTeacher-->
     <script>
         function showEditTeacher(ths) {
-            document.getElementById('shadow').classList.remove('hide');
-            document.getElementById('EditTeacherModal').classList.remove('hide');
+            document.getElementById('shadow').classList.remove('f_hide');
+            document.getElementById('EditTeacherModal').classList.remove('f_hide');
             let v = $(ths).parent().prevAll();
             $('#EditTeacherName').val($(v[1]).text())
             $('#EditTeacherId').val($(v[2]).text())

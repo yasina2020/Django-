@@ -1,33 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/plug/bootstrap-3/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/plug/bootstrap-3/js/bootstrap.js" />
+    <link rel="stylesheet" href="/static/plug/font-awesome-4/css/font-awesome.css" />
+    <style>
+        body{
+            margin: 0;
+        }
+        .pg-header{
+            height: 60px;
+            min-width: 1000px;
+            background-color: #3c763d;
+        }
+        .menus{
+            width: 200px;
+            position: absolute;
+            left: 0;
+            top: 60px;
+            bottom: 0;
+            background-color: #2aabd2;
+        }
+        .content{
+            position: absolute;
+            left: 200px;
+            top: 60px;
+            right: 0;
+            bottom: 0;
+            min-width: 900px;
+            overflow: scroll;
+            z-index: 99;
+            background-color: #888888;
+        }
+        .pg-header .logo{
+            color: white;
+            font-size: 38px;
+            float: left;
+            line-height: 60px;
+            width: 200px;
+            text-align: center;
+            background-color: #ff7b68;
+        }
+        .pg-header .f_nav{
+            float: right;
+        }
+        .pg-header .f_nav a{
+            display: inline-block;
+            padding: 0 15px;
+            color: white;
+        }
+        .pg-header .f_nav a:hover{
+            background-color: #2aabd2;
+        }
+        .pg-header .avatar{
+            float: right;
+            padding: 0 20px;
+        }
+        .pg-header .avatar img{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        .pg-header .avatar .user-info{
+            display: none;
+            z-index: 100;
+            position: absolute;
+            width: 82px;
+            top: 60px;
+            right: 17px;
+            border: 1px solid #dddddd;
+            background-color: #fcfff3;
+        }
+        .pg-header .avatar .user-info a{
+            display: block;
+            padding: 5px;
+        }
+        .pg-header .avatar:hover .user-info{
+            display: block;
+        }
+    </style>
 </head>
 <body>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1380720351&auto=1&height=66"></iframe>
-<h1>用户列表信息</h1>
-<table border="1">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for row in user_list_dict %}
-            <tr>
-                <th>{{row.id}}</th>
-                <th>{{row.name}}</th>
-                <th>{{row.email}}</th>
-                <th>
-                    <a>编辑</a> | <a href="/login/">删除</a>
-                </th>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="pg-header">
+        <div class="logo">小方的窝</div>
+        <div class="avatar">
+            <img  src="/static/image/1.jpg">
+            <div class="user-info">
+                <a>个人信息</a>
+                <a>设置</a>
+                <a>注销</a>
+            </div>
+        </div>
+        <div class="f_nav">
+            <a href=""><i class="fa fa-home"></i>帖子</a>
+            <a href=""><i class="fa fa-file-text-o"></i>文章</a>
+            <a href=""><i class="fa fa-image"></i>图片</a>
+            <a href=""><i class="fa fa-bank"></i>我的</a>
+        </div>
+
+    </div>
+    <div class="pg-body">
+        <div class="menus">菜单</div>
+        <div class="content">内容</div>
+    </div>
 </body>
 </html>

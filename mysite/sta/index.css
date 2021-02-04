@@ -1,0 +1,26 @@
+
+/* 重置样式 通配符*/
+/* 头部 */
+header{
+    position: relative;
+    height: 80px;
+    background-color: #97130a;
+}
+
+/* main */
+
+aside{
+    float: left;
+    width: 450px;
+    background-color: #5e9728;
+}
+article{
+    float: right;
+    width: 700px;
+    overflow: hidden;
+    background-color: #ff6ea0;
+}
+footer{
+    position: relative;
+    background-color: #5a96ff;
+}

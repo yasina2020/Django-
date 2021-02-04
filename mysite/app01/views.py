@@ -27,13 +27,7 @@ def login(request):
 
 
 def index(request):
-    return render(request, 'index.html', {
-        'user_list_dict': [
-            {'id': 1, 'name': 'user_1', 'email': 'user_1@qq.com'},
-            {'id': 2, 'name': 'user_2', 'email': 'user_2@qq.com'},
-            {'id': 3, 'name': 'user_3', 'email': 'user_3@qq.com'},
-        ]
-    })
+    return render(request, 'index.html')
 
 
 def classes(request):

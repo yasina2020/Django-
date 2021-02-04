@@ -3,27 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4cce756a-33d8-4704-965c-b2c3a2e002ae" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/css/bootstrap-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/css/bootstrap-theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/css/bootstrap-theme.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/css/bootstrap-theme.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/css/bootstrap-theme.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/css/bootstrap-theme.min.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/css/bootstrap.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/css/bootstrap.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/css/bootstrap.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/css/bootstrap.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/css/bootstrap.min.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.eot" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.svg" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/js/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3.3.7-dist/js/npm.js" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/sta/plug/bootstrap-3/js/npm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/templates/class.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/templates/class.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/templates/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/templates/student.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/templates/teacher.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/templates/teacher.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/templates/teacherinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/templates/teacherinfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/app01/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app01/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,10 +14,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="Python Script" />
         <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -69,8 +50,8 @@
       <recent name="D:\GitHub\Django\1-27\动态网站" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\GitHub\Django\mysite\sta\plug" />
       <recent name="D:\GitHub\Django\mysite\sta\images" />
+      <recent name="D:\GitHub\Django\mysite\sta\plug" />
       <recent name="D:\GitHub\Django\1-27\静态网站" />
     </key>
   </component>
@@ -147,7 +128,7 @@
       <workItem from="1612071635835" duration="14062000" />
       <workItem from="1612145532031" duration="20960000" />
       <workItem from="1612238522896" duration="14673000" />
-      <workItem from="1612407308420" duration="14943000" />
+      <workItem from="1612407308420" duration="20311000" />
     </task>
     <servers />
   </component>

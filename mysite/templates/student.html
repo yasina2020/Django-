@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/static/plug/bootstrap-3/css/bootstrap.css" />
-    <link rel="stylesheet" href="/static/plug/bootstrap-3/js/bootstrap.js" />
-    <link rel="stylesheet" href="/static/common.css" />
-</head>
-<body>
-<div style="margin: 0 auto;width: 700px">
-    <h3>学生信息</h3>
+{% extends 'index.html' %}
+
+{% block content%}
     <div style="margin: 10px 0">
         <a href="/add_student" class="btn btn-primary">添加学生</a>
         <a id="ShowModal" class="btn btn-info">对话框添加</a>
@@ -43,7 +34,10 @@
         </tbody>
     </table>
 </div>
-    <div id="shadow" class="f_shadow f_hide"></div>
+
+{%endblock%}
+{% block js%}
+<div id="shadow" class="f_shadow f_hide"></div>
 <!--    AddModalStudent-->
     <div id="modal" class="f_modal f_hide">
             <span id="errormsg" class="f_hide"></span>
@@ -77,78 +71,73 @@
         <input id="AjaxSendEdit"   type="button" value="提交" >
         <input id="CanelModal" type="button" value="取消">
     </div>
-</body>
+     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!--    AddModalStudent-->
+        <script>
+            $('#ShowModal').click(function(){
+                document.getElementById('shadow').classList.remove('f_hide');
+                document.getElementById('modal').classList.remove('f_hide');
+            });
+            $('#CanelModal,#shadow').click(function(){
+                $('#errormsg,#shadow,#modal,#EditSrudentModal').addClass('f_hide');
+            });
+            $('#AjaxSend').click(function () {
+                let stu_name = $('#stu_name_add').val();
+                let class_id = $('#class_id_add option:selected').val();
 
- <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<!--    AddModalStudent-->
-    <script>
-        $('#ShowModal').click(function(){
-            document.getElementById('shadow').classList.remove('f_hide');
-            document.getElementById('modal').classList.remove('f_hide');
-        });
-        $('#CanelModal,#shadow').click(function(){
-            $('#errormsg,#shadow,#modal,#EditSrudentModal').addClass('f_hide');
-        });
-        $('#AjaxSend').click(function () {
-            let stu_name = $('#stu_name_add').val();
-            let class_id = $('#class_id_add option:selected').val();
+                console.log(stu_name,class_id)
+                 $.ajax({
+                    url:'/add_student_m/',
+                    type:'POST',
+                    data:{'stu_name_add': stu_name, 'class_id_add': class_id},
+                    success:function (arg) {
+                        arg = JSON.parse(arg);
+                        if(arg.status)
+                            location.reload();
+                        else {
+                            $('#errormsg').removeClass('hide');
+                            $('#errormsg').text(arg.message);
+                        }
 
-            console.log(stu_name,class_id)
-             $.ajax({
-                url:'/add_student_m/',
-                type:'POST',
-                data:{'stu_name_add': stu_name, 'class_id_add': class_id},
-                success:function (arg) {
-                    arg = JSON.parse(arg);
-                    if(arg.status)
-                        location.reload();
-                    else {
-                        $('#errormsg').removeClass('hide');
-                        $('#errormsg').text(arg.message);
                     }
-
-                }
+                })
             })
+        </script>
+    <!--    EditModalStudent-->
+    <script>
+        function showEditStudent(ths){
+            $('#shadow,#EditSrudentModal').removeClass('f_hide');
+
+            let v = $(ths).parent().prevAll();
+            let stu_id = $(v[3]).text();
+            let stu_name = $(v[2]).text();
+            //那自定义属性的值用attr(self_class_name)
+            let c_id = $(v[1]).attr('c_id');
+            console.log(stu_name,stu_id,c_id);
+            $('#stu_name_edit').val(stu_name);
+            $('#stu_id_edit').val(stu_id);
+            $('#class_id_edit').val(c_id);
+        }
+
+        $('#AjaxSendEdit').click(function () {
+            let stu_id = $('#stu_id_edit').val();
+            let stu_name = $('#stu_name_edit').val();
+            let class_id =  $('#class_id_edit').val();
+            $.ajax({
+                    url:'/edit_student_m/',
+                    type:'POST',
+                    data:{'stu_id':stu_id, 'stu_name': stu_name, 'class_id': class_id},
+                    success:function (arg) {
+                        arg = JSON.parse(arg);
+                        if(arg.status)
+                            location.reload();
+                        else {
+                            $('#errormsg').removeClass('hide');
+                            $('#errormsg').text(arg.message);
+                        }
+
+                    }
+                })
         })
     </script>
-<!--    EditModalStudent-->
-<script>
-    function showEditStudent(ths){
-        $('#shadow,#EditSrudentModal').removeClass('f_hide');
-
-        let v = $(ths).parent().prevAll();
-        let stu_id = $(v[3]).text();
-        let stu_name = $(v[2]).text();
-        //那自定义属性的值用attr(self_class_name)
-        let c_id = $(v[1]).attr('c_id');
-        console.log(stu_name,stu_id,c_id);
-        $('#stu_name_edit').val(stu_name);
-        $('#stu_id_edit').val(stu_id);
-        $('#class_id_edit').val(c_id);
-    }
-
-    $('#AjaxSendEdit').click(function () {
-        let stu_id = $('#stu_id_edit').val();
-        let stu_name = $('#stu_name_edit').val();
-        let class_id =  $('#class_id_edit').val();
-        $.ajax({
-                url:'/edit_student_m/',
-                type:'POST',
-                data:{'stu_id':stu_id, 'stu_name': stu_name, 'class_id': class_id},
-                success:function (arg) {
-                    arg = JSON.parse(arg);
-                    if(arg.status)
-                        location.reload();
-                    else {
-                        $('#errormsg').removeClass('hide');
-                        $('#errormsg').text(arg.message);
-                    }
-
-                }
-            })
-    })
-
-
-</script>
-
-</html>
+{%endblock%}

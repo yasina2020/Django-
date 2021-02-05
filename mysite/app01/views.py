@@ -4,26 +4,27 @@ import json
 
 
 def login(request):
-    """
-    处理用户请求，并返回内容
-    :param request:用户请求相关（对象-django已做好分割）
-    :return:
-    """
-    # return HttpResponse('login') # 只能返回字符串'
     if request.method == "GET":
         return render(request, 'login.html')
     else:
         u = request.POST.get('user')
         p = request.POST.get('pwd')
         if u == 'root' and p == '123':
-            # 登陆成功 跳转
-            # return redirect('http://www.baidu.com')
-            return redirect('/index/')
-            # 执行这一行会重新到路由系统中匹配yul，
-            # 然后匹配成功 进入index函数，再由index函数加载index页面
+            obj = redirect('/class/')
+            # max_age=10 cookies最多存在10s
+            # import datetime
+            # from datetime import timedelta
+            # ct = datetime.datetime.utnow()
+            # v = timedelta(seconds=10)
+            # value = ct + 10
+            # expires= value 设置到期时间 这里是十秒后到期
+            # path='/url' 表明这个cookies只向该url写入
+            # obj.set_cookie('tk', 'afdsfawefasf', max_age=5)
+            # 签名COOKIE
+            obj.set_signed_cookie('tk', 'afdsfawefasf', max_age=5,salt='askldma')
+            return obj
         else:
-            # 登录失败
-            return render(request, 'login.html', {'msg': '登陆失败'})
+            return render(request, 'login.html', {'msg': '账号或密码错误'})
 
 
 def index(request):
@@ -31,6 +32,10 @@ def index(request):
 
 
 def classes(request):
+    # tk = request.COOKIES.get('tk')
+    tk = request.get_signed_cookie('tk', salt='askldma')
+    if not tk:
+        return render(request, 'login.html', {'msg': '请登录'})
     class_list = sqlhelp.get_list("select id,class_name from class", [])
     return render(request, 'class.html', {'class_list': class_list})
 

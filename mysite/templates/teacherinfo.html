@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>教师任教信息表</title>
-    <link rel="stylesheet" href="/static/plug/bootstrap-3/css/bootstrap.css" />
-    <link rel="stylesheet" href="/static/plug/bootstrap-3/js/bootstrap.js" />
-    <link rel="stylesheet" href="/static/common.css" />
-</head>
-<body>
-<div style="margin: 0 auto;width: 700px">
-    <h3>教师任教信息表</h3>
+{% extends "index.html" %}
+
+{% block content%}
     <div style="margin: 10px 0">
         <a href="/add_teacherinfo" class="btn btn-primary">添加任教信息</a>
         <a id="ShowModal" class="btn btn-info">对话框添加</a>
@@ -46,17 +37,22 @@
         {%endfor%}
         </tbody>
     </table>
-</div>
+{% endblock %}
+
+{%block js%}
 <div id="shadow" class="f_shadow f_hide"></div>
 <div id="loading" class="f_loading2 f_hide"></div>
 <div id="modal" class="f_modal f_hide">
     <span id="errormsg" class="f_hide"></span>
-    <p>教师姓名：
-        <input id="th_name_add" type="text" required="required">
-    </p>
-    <p>任课班级(多选):</p>
+    <div class="form-group">
+        <label class="col-sm-4 control-label">教师姓名：</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="th_name_add">
+        </div>
+    </div>
+    <label class="col-sm-6 control-label">任课班级(多选)：</label>
     <p>
-        <select id="class_ids_add" multiple="multiple" size="5">
+        <select id="class_ids_add" multiple="multiple" size="5" class="form-control">
 <!--            这里用动态js加载的方法添加option-->
         </select>
     </p>
@@ -67,12 +63,13 @@
 <!--    编辑教师任教信息-->
 <div id="editmodal" class="f_modal f_hide">
     <span id="errormsg" class="f_hide"></span>
-    <p>教师姓名：
-        <input id="th_name_edit" type="text" required="required">
-    </p>
+    <div class="form-group">
+    <label for="exampleInputEmail1">教师姓名</label>
+    <input class="form-control" id="th_name_edit" type="text" required="required">
+  </div>
     <p>任课班级(多选):</p>
     <p>
-        <select id="class_ids_edit" multiple="multiple" size="5">
+        <select id="class_ids_edit" multiple="multiple" size="5" class="form-control">
 <!--            这里用动态js加载的方法添加option-->
         </select>
     </p>
@@ -163,6 +160,4 @@
     }
 
 </script>
-
-</body>
-</html>
+{%endblock%}

@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>教师信息表</title>
-    <link rel="stylesheet" href="/static/plug/bootstrap-3/css/bootstrap.css" />
-    <link rel="stylesheet" href="/static/plug/bootstrap-3/js/bootstrap.js" />
-    <link rel="stylesheet" href="/static/common.css" />
-</head>
-<body>
-    <div style="margin: 0 auto;width: 700px">
-        <h1>教师信息</h1>
+{% extends "index.html" %}
+
+{% block content%}
         <div style="margin: 10px 0">
             <a href="/add_teacher" class="btn btn-primary">添加教师</a>
             <a onclick="showModal();" class="btn btn-info">对话框添加教师</a>
@@ -40,7 +31,9 @@
             {%endfor%}
             </tbody>
         </table>
-    </div>
+{% endblock %}
+
+{%block js%}
     <div id="shadow" class="f_shadow f_hide" onclick="CanelModal();"></div>
     <div id="modal" class="f_modal f_hide">
         <form method="POST" action="/add_teacher_m/">
@@ -124,5 +117,4 @@
             })
         }
     </script>
-</body>
-</html>
+{%endblock%}

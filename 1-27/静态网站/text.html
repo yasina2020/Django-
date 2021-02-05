@@ -1,0 +1,232 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/plug/bootstrap-3/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/plug/font-awesome-4/css/font-awesome.css" />
+    <link rel="stylesheet" href="/static/css/common.css" />
+
+</head>
+<body>
+    <div class="pg-header">
+        <div class="logo">小方的窝</div>
+        <div class="avatar">
+<!--            <img  src="/static/image/1.jpg">-->
+            <i class="fa fa-home fa-3x fa-spin"></i>
+            <div class="user-info">
+                <a>个人信息</a>
+                <a>设置</a>
+                <a>注销</a>
+            </div>
+        </div>
+        <div class="f_nav">
+            <a href=""><i class="fa fa-home"></i>帖子</a>
+            <a href=""><i class="fa fa-file-text-o"></i>文章</a>
+            <a href=""><i class="fa fa-image"></i>图片</a>
+            <a href=""><i class="fa fa-bank"></i>我的</a>
+        </div>
+    </div>
+
+    <div class="pg-body">
+        <div class="menus">
+            <a >班级管理</a>
+            <a >学生管理</a>
+            <a >老师管理</a>
+        </div>
+        <div class="content">
+            <div>
+               <ol class="breadcrumb">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Library</a></li>
+                  <li class="active">Data</li>
+                </ol>
+            </div>
+            <div style="margin: 0 auto;width: 700px">
+
+        <div style="margin: 10px 0">
+            <a href="/add_class" class="btn btn-primary">添加</a>
+            <a onclick="showModal();" class="btn btn-info">对话框添加</a>
+        </div>
+        <table border="1" class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>班级名称</th>
+                <th>操作</th>
+                <th>对话框操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+               <th>4</th>
+               <th>初中二年级</th>
+               <th>
+                   <a href="/del_class/?nid=4" class="glyphicon glyphicon-trash">删除</a>
+                   |
+                   <a href="/edit_class/?nid=4" class="glyphicon glyphicon-pencil">编辑</a>
+               </th>
+                <th>
+                   <a onclick="showEditClass(this);" class="glyphicon glyphicon-wrench">对话框编辑</a>
+               </th>
+            </tr>
+
+            <tr>
+               <th>5</th>
+               <th>小学一年级</th>
+               <th>
+                   <a href="/del_class/?nid=5" class="glyphicon glyphicon-trash">删除</a>
+                   |
+                   <a href="/edit_class/?nid=5" class="glyphicon glyphicon-pencil">编辑</a>
+               </th>
+                <th>
+                   <a onclick="showEditClass(this);" class="glyphicon glyphicon-wrench">对话框编辑</a>
+               </th>
+            </tr>
+
+            <tr>
+               <th>6</th>
+               <th>小学五年级</th>
+               <th>
+                   <a href="/del_class/?nid=6" class="glyphicon glyphicon-trash">删除</a>
+                   |
+                   <a href="/edit_class/?nid=6" class="glyphicon glyphicon-pencil">编辑</a>
+               </th>
+                <th>
+                   <a onclick="showEditClass(this);" class="glyphicon glyphicon-wrench">对话框编辑</a>
+               </th>
+            </tr>
+
+            <tr>
+               <th>8</th>
+               <th>初中一年级</th>
+               <th>
+                   <a href="/del_class/?nid=8" class="glyphicon glyphicon-trash">删除</a>
+                   |
+                   <a href="/edit_class/?nid=8" class="glyphicon glyphicon-pencil">编辑</a>
+               </th>
+                <th>
+                   <a onclick="showEditClass(this);" class="glyphicon glyphicon-wrench">对话框编辑</a>
+               </th>
+            </tr>
+
+            <tr>
+               <th>10</th>
+               <th>初中三年级</th>
+               <th>
+                   <a href="/del_class/?nid=10" class="glyphicon glyphicon-trash">删除</a>
+                   |
+                   <a href="/edit_class/?nid=10" class="glyphicon glyphicon-pencil">编辑</a>
+               </th>
+                <th>
+                   <a onclick="showEditClass(this);" class="glyphicon glyphicon-wrench">对话框编辑</a>
+               </th>
+            </tr>
+
+            <tr>
+               <th>11</th>
+               <th>高中一年级</th>
+               <th>
+                   <a href="/del_class/?nid=11" class="glyphicon glyphicon-trash">删除</a>
+                   |
+                   <a href="/edit_class/?nid=11" class="glyphicon glyphicon-pencil">编辑</a>
+               </th>
+                <th>
+                   <a onclick="showEditClass(this);" class="glyphicon glyphicon-wrench">对话框编辑</a>
+               </th>
+            </tr>
+
+            </tbody>
+        </table>
+
+            </div>
+        </div>
+
+    </div>
+
+<div id="shadow" class="f_shadow f_hide" onclick="CanelModal();"></div>
+<div id="modal" class="f_modal f_hide">
+    <form method="POST" action="/add_class_m/">
+        <span id="errormsg"></span>
+        <p>班级名称：
+            <input id="class_name" type="text" required="required">
+        </p>
+        <input type="button" value="提交" onclick="AjaxSend();">
+        <input type="button" value="取消" onclick="CanelModal();">
+    </form>
+</div>
+
+    <div id="EditClassModal" class="f_modal f_hide">
+        <p><input  id="EditClassName" type="text" required="required" ></p>
+        <p><input  id="EditClassId" type="text" hidden="hidden" ></p>
+        <input type="button" value="提交" onclick="SendEditClass();">
+        <input type="button" value="取消" onclick="CanelModal();">
+    </div>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<!--    addModalClass-->
+    <script>
+        function showModal() {
+            $('#shadow,#modal').removeClass('f_hide');
+        }
+        function CanelModal() {
+            $('#shadow,#modal,#EditClassModal,#errormsg').addClass('f_hide');
+        }
+        function AjaxSend() {
+            $.ajax({
+                url:'/add_class_m/',
+                type:'POST',
+                data:{'class_name': $('#class_name').val()},//将data数据以POST方式发送到指定的url中
+                success:function (arg) {  //后端处理完后自动执行这个函数，并返回新data
+                    arg = JSON.parse(arg);
+                    if(arg.status){
+                        location.reload();
+                    }
+                    else {
+                        $('#errormsg').text(arg.message)
+                    }
+
+                }
+            })
+
+        }
+    </script>
+<!--    editModalClass-->
+    <script>
+        function showEditClass(ths) {
+            $('#shadow,#EditClassModal').removeClass('f_hide');
+            let v = $(ths).parent().prevAll();
+            $('#EditClassName').val($(v[1]).text())
+            $('#EditClassId').val($(v[2]).text())
+        }
+        function SendEditClass() {
+            let nid=$('#EditClassId').val();
+            let class_name=$('#EditClassName').val();
+            $.ajax({
+                url:'/edit_class_m/',
+                type:'POST',
+                data:{'nid':nid,'class_name':class_name},
+                success: function (arg) {
+                    //JSON.parse(str)-->对象
+                    //JSON.stringify(对象)-->str
+                    arg = JSON.parse(arg);
+                    if(arg.status){
+                      //  location.href='/class/'; //跳转到指定url
+                        location.reload(); //当前页面刷新
+                    }
+                    else {
+                        alert(arg.message)
+                    }
+                }
+            })
+        }
+    </script>
+
+
+</body>
+</html>

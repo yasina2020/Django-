@@ -7,89 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/static/plug/bootstrap-3/css/bootstrap.css" />
-    <link rel="stylesheet" href="/static/plug/bootstrap-3/js/bootstrap.js" />
     <link rel="stylesheet" href="/static/plug/font-awesome-4/css/font-awesome.css" />
-    <style>
-        body{
-            margin: 0;
-        }
-        .pg-header{
-            height: 60px;
-            min-width: 1000px;
-            background-color: #3c763d;
-        }
-        .menus{
-            width: 200px;
-            position: absolute;
-            left: 0;
-            top: 60px;
-            bottom: 0;
-            background-color: #2aabd2;
-        }
-        .content{
-            position: absolute;
-            left: 200px;
-            top: 60px;
-            right: 0;
-            bottom: 0;
-            min-width: 900px;
-            overflow: scroll;
-            z-index: 99;
-            background-color: #888888;
-        }
-        .pg-header .logo{
-            color: white;
-            font-size: 38px;
-            float: left;
-            line-height: 60px;
-            width: 200px;
-            text-align: center;
-            background-color: #ff7b68;
-        }
-        .pg-header .f_nav{
-            float: right;
-        }
-        .pg-header .f_nav a{
-            display: inline-block;
-            padding: 0 15px;
-            color: white;
-        }
-        .pg-header .f_nav a:hover{
-            background-color: #2aabd2;
-        }
-        .pg-header .avatar{
-            float: right;
-            padding: 0 20px;
-        }
-        .pg-header .avatar img{
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-        }
-        .pg-header .avatar .user-info{
-            display: none;
-            z-index: 100;
-            position: absolute;
-            width: 82px;
-            top: 60px;
-            right: 17px;
-            border: 1px solid #dddddd;
-            background-color: #fcfff3;
-        }
-        .pg-header .avatar .user-info a{
-            display: block;
-            padding: 5px;
-        }
-        .pg-header .avatar:hover .user-info{
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/css/common.css" />
+    <link rel="stylesheet" href="/static/common.css" />
+    {% block css %} {% endblock %}
 </head>
 <body>
     <div class="pg-header">
         <div class="logo">小方的窝</div>
         <div class="avatar">
-            <img  src="/static/image/1.jpg">
+<!--            <img  src="/static/image/1.jpg">-->
+            <i class="fa fa-home fa-3x fa-spin"></i>
             <div class="user-info">
                 <a>个人信息</a>
                 <a>设置</a>
@@ -102,11 +30,28 @@
             <a href=""><i class="fa fa-image"></i>图片</a>
             <a href=""><i class="fa fa-bank"></i>我的</a>
         </div>
+    </div>
+
+    <div class="pg-body">
+        <div class="menus">
+            <a >班级管理</a>
+            <a >学生管理</a>
+            <a >老师管理</a>
+        </div>
+        <div class="content">
+            <div>
+               <ol class="breadcrumb">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Library</a></li>
+                  <li class="active">Data</li>
+                </ol>
+            </div>
+            <div style="margin: 0 auto;width: 700px">
+                {% block content %} {% endblock %}
+            </div>
+        </div>
 
     </div>
-    <div class="pg-body">
-        <div class="menus">菜单</div>
-        <div class="content">内容</div>
-    </div>
+        {% block js%} {% endblock %}
 </body>
 </html>

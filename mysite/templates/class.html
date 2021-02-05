@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/static/plug/bootstrap-3/css/bootstrap.css" />
-    <link rel="stylesheet" href="/static/plug/bootstrap-3/js/bootstrap.js" />
-    <link rel="stylesheet" href="/static/common.css" />
-</head>
-<body>
-    <div style="margin: 0 auto;width: 700px">
-        <h3>班级信息</h3>
+{% extends "index.html" %}
+
+{% block content%}
         <div style="margin: 10px 0">
             <a href="/add_class" class="btn btn-primary">添加</a>
             <a onclick="showModal();" class="btn btn-info">对话框添加</a>
@@ -40,18 +31,20 @@
             {%endfor%}
             </tbody>
         </table>
-    </div>
-    <div id="shadow" class="f_shadow f_hide" onclick="CanelModal();"></div>
-    <div id="modal" class="f_modal f_hide">
-        <form method="POST" action="/add_class_m/">
-            <span id="errormsg"></span>
-            <p>
-                <input id="class_name" type="text" required="required">
-            </p>
-            <input type="button" value="提交" onclick="AjaxSend();">
-            <input type="button" value="取消" onclick="CanelModal();">
-        </form>
-    </div>
+{% endblock %}
+
+{%block js%}
+<div id="shadow" class="f_shadow f_hide" onclick="CanelModal();"></div>
+<div id="modal" class="f_modal f_hide">
+    <form method="POST" action="/add_class_m/">
+        <span id="errormsg"></span>
+        <p>班级名称：
+            <input id="class_name" type="text" required="required">
+        </p>
+        <input type="button" value="提交" onclick="AjaxSend();">
+        <input type="button" value="取消" onclick="CanelModal();">
+    </form>
+</div>
 
     <div id="EditClassModal" class="f_modal f_hide">
         <p><input  id="EditClassName" type="text" required="required" ></p>
@@ -60,7 +53,7 @@
         <input type="button" value="取消" onclick="CanelModal();">
     </div>
 
-    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <!--    addModalClass-->
     <script>
         function showModal() {
@@ -119,5 +112,4 @@
         }
     </script>
 
-</body>
-</html>
+{%endblock%}

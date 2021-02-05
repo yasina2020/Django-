@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Django-
 
 如何利用git上传本地代码到github仓库

@@ -1,7 +1,7 @@
 from django.shortcuts import HttpResponse, render, redirect
 from utils import sqlhelp
 import json
-
+from app01 import models
 
 def login(request):
     if request.method == "GET":
@@ -21,7 +21,7 @@ def login(request):
             # path='/url' 表明这个cookies只向该url写入
             # obj.set_cookie('tk', 'afdsfawefasf', max_age=5)
             # 签名COOKIE
-            obj.set_signed_cookie('tk', 'afdsfawefasf', max_age=5,salt='askldma')
+            obj.set_signed_cookie('tk', 'afdsfawefasf', max_age=9999, salt='askldma')
             return obj
         else:
             return render(request, 'login.html', {'msg': '账号或密码错误'})
@@ -36,7 +36,8 @@ def classes(request):
     tk = request.get_signed_cookie('tk', salt='askldma')
     if not tk:
         return render(request, 'login.html', {'msg': '请登录'})
-    class_list = sqlhelp.get_list("select id,class_name from class", [])
+    class_list = models.Class.objects.all()
+    # class_list = sqlhelp.get_list("select id,class_name from class", [])
     return render(request, 'class.html', {'class_list': class_list})
 
 
@@ -45,30 +46,35 @@ def add_class(request):
         return render(request, 'add_class.html')
     else:
         v = request.POST.get('class_name')
-        sqlhelp.modify("insert into class(class_name) value(%s)", [v, ])
+        models.Class.objects.create(class_name=v)
+        # sqlhelp.modify("insert into class(class_name) value(%s)", [v, ])
         return redirect('/class/')
 
 
 def del_class(request):
     nid = request.GET.get('nid')
-    sqlhelp.modify("delete from class where id=%s", [nid, ])
+    models.Class.objects.filter(id=nid).delete()
+    # sqlhelp.modify("delete from class where id=%s", [nid, ])
     return redirect('/class/')
 
 
 def edit_class(request):
     if request.method == "GET":
         nid = request.GET.get('nid')
-        result = sqlhelp.get_one("select id,class_name from class where id=%s", [nid, ])
+        result = models.Class.objects.filter(id=nid).first()
+        # result = sqlhelp.get_one("select id,class_name from class where id=%s", [nid, ])
         return render(request, 'edit_class.html', {'result': result})
     else:
         nid = request.GET.get('nid')
         class_name = request.POST.get('class_name')
-        sqlhelp.modify("update class set class_name=%s where id=%s", [class_name, nid, ])
+        models.Class.objects.filter(id=nid).update(class_name=class_name)
+        # sqlhelp.modify("update class set class_name=%s where id=%s", [class_name, nid, ])
         return redirect('/class')
 
 
 def teacher(request):
-    th_list = sqlhelp.get_list("select id,th_name from teacher", [])
+    th_list = models.Teacher.objects.all()
+    # th_list = sqlhelp.get_list("select id,th_name from teacher", [])
     return render(request, 'teacher.html', {'th_list': th_list})
 
 
@@ -77,13 +83,15 @@ def add_teacher(request):
         return render(request, 'add_teacher.html')
     else:
         v = request.POST.get('th_name')
-        sqlhelp.modify("insert into teacher(th_name) value(%s)", [v, ])
+        models.Teacher.objects.create(th_name=v)
+        # sqlhelp.modify("insert into teacher(th_name) value(%s)", [v, ])
         return redirect('/teacher')
 
 
 def del_teacher(request):
     nid = request.GET.get('nid')
-    sqlhelp.modify("delete from teacher where id=%s", [nid, ])
+    models.Teacher.objects.filter(id=nid).delete()
+    # sqlhelp.modify("delete from teacher where id=%s", [nid, ])
     return redirect('/teacher')
 
 
@@ -96,7 +104,8 @@ def edit_teacher(request):
     else:
         nid = request.GET.get('nid')
         th_name = request.POST.get('th_name')
-        sqlhelp.modify("update teacher set th_name=%s where id=%s", [th_name, nid, ])
+        models.Teacher.objects.filter(id=nid).update(th_name=th_name)
+        # sqlhelp.modify("update teacher set th_name=%s where id=%s", [th_name, nid, ])
         return redirect('/teacher')
 
 

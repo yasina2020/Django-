@@ -37,3 +37,19 @@ git push -u origin main
 ...or import code from another repository
 
 You can initialize this repository with code from a Subversion,Mercurial, or TFS project.
+
+
+
+2.23更新：自定义分页功能
+
+```
+from utils.MyPage import PageInfo
+page_info = PageInfo(cur_page, 10, all_count, url='selfpage.html')
+"""
+:param cur_page: 当前页
+:param per_page: 每页几条数据
+:param all_count: 总行数
+:param show_page: 显示多少个页码
+:param url: 显示页码的网址
+"""
+```

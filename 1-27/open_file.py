@@ -70,3 +70,14 @@ a+
 ab+
 """
 
+import shutil
+
+# 2.复制文件：
+#
+# shutil.copyfile(“oldfile”,”newfile”) #oldfile和newfile都只能是文件
+#
+# shutil.copy(“oldfile”,”newfile”) #oldfile只能是文件夹，newfile可以是文件，也可以是目标目录
+#
+# 3.复制文件夹：
+#
+# 4.shutil.copytree(“olddir”,”newdir”) #olddir和newdir都只能是目录，且newdir必须不存在

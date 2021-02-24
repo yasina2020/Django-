@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4cce756a-33d8-4704-965c-b2c3a2e002ae" name="默认更改列表" comment="wu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/app01/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app01/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/app01/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app01/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/mysite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/mysite/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/templates/edit_student.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/templates/edit_student.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/templates/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/templates/student.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +22,8 @@
       <list>
         <option value="JavaScript File" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -142,6 +147,7 @@
       <workItem from="1612681033068" duration="668000" />
       <workItem from="1613879407638" duration="9281000" />
       <workItem from="1613961342322" duration="652000" />
+      <workItem from="1614137783447" duration="3461000" />
     </task>
     <servers />
   </component>

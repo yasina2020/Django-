@@ -109,43 +109,61 @@ def edit_teacher(request):
         return redirect('/teacher')
 
 
+def test(request):
+    v = models.Student.objects.values('id', 'stu_name', 'class_field_id', 'class_field_id__class_name')
+    for i in v:
+        print(i)
+    # v = models.Relationship.objects.all()
+    # for i in v:
+    #     print(i.t.th_name, i.c.class_name)
+    return render(request, 'test.html')
+    # return render(request, 'test.html', {'stu_list': stu_list})
+
 def student(request):
-    stu_list = sqlhelp.get_list(
-        "SELECT s.id,stu_name,class_id,class_name FROM student  s,class WHERE s.class_id=class.id  order by s.id", [])
+    stu_list = models.Student.objects.values('id', 'stu_name', 'class_field', 'class_field_id__class_name')
+    # stu_list = sqlhelp.get_list(
+    #     "SELECT s.id,stu_name,class_id,class_name FROM student  s,class WHERE s.class_id=class.id  order by s.id", [])
     #  id stu_name class_id class_name
     #  1   张三    4         初中二年级
-    class_list = sqlhelp.get_list("select * from class", [])
+    class_list = models.Class.objects.all()
+    # class_list = sqlhelp.get_list("select * from class", [])
     return render(request, 'student.html', {'stu_list': stu_list, 'class_list': class_list})
 
 
 def add_student(request):
     if request.method == "GET":
-        class_list = sqlhelp.get_list("SELECT * FROM class", [])
+        # class_list = sqlhelp.get_list("SELECT * FROM class", [])
+        class_list = models.Class.objects.all()
         return render(request, 'add_student.html', {'class_list': class_list})
     else:
         class_id = request.POST.get('class_id')
         stu_name = request.POST.get('stu_name')
-        sqlhelp.modify("insert into student(stu_name,class_id) value(%s,%s)", [stu_name, class_id, ])
+        # sqlhelp.modify("insert into student(stu_name,class_id) value(%s,%s)", [stu_name, class_id, ])
+        models.Student.objects.create(stu_name=stu_name, class_id=class_id)
         return redirect('/student')
 
 
 def del_student(request):
     nid = request.GET.get('nid')
-    sqlhelp.modify("delete from student where id=%s", [nid, ])
+    # sqlhelp.modify("delete from student where id=%s", [nid, ])
+    models.Student.objects.filter(id=nid).delete()
     return redirect('/student')
 
 
 def edit_student(request):
     if request.method == "GET":
         nid = request.GET.get('nid')
-        result = sqlhelp.get_one("SELECT * FROM student where id=%s", [nid, ])
-        class_list = sqlhelp.get_list("SELECT * FROM class", [])
+        result = models.Student.objects.filter(id=nid).first()
+        # result = sqlhelp.get_one("SELECT * FROM student where id=%s", [nid, ])
+        class_list = models.Class.objects.all()
+        # class_list = sqlhelp.get_list("SELECT * FROM class", [])
         return render(request, 'edit_student.html', {'result': result, 'class_list': class_list})
     else:
         nid = request.GET.get('nid')
         stu_name = request.POST.get('stu_name')
         class_id = request.POST.get('class_id')
-        sqlhelp.modify("update student set stu_name=%s,class_id=%s where id=%s", [stu_name, class_id, nid, ])
+        models.Student.objects.filter(id=nid).update(stu_name=stu_name, class_field=class_id)
+        # sqlhelp.modify("update student set stu_name=%s,class_id=%s where id=%s", [stu_name, class_id, nid, ])
         return redirect('/student')
 
 
@@ -239,14 +257,15 @@ def teacherinfo(request):
             tn[tid]['c_name'].append(row['class_name'])
         else:
             tn[tid] = {'tid': row['t_id'], 'th_name': row['th_name'], 'c_name': [row['class_name'], ]}
-    class_list = sqlhelp.get_list('select * from class', [])
-
+    # class_list = sqlhelp.get_list('select * from class', [])
+    class_list = models.Class.objects.all()
     return render(request, 'teacherinfo.html', {'th_to_c_list': tn.values(), 'class_list': class_list})
 
 
 def add_teacherinfo(request):
     if request.method == 'GET':
-        class_list = sqlhelp.get_list('select * from class', [])
+        # class_list = sqlhelp.get_list('select * from class', [])
+        class_list = models.Class.objects.all()
         print(class_list)
         return render(request, 'add_teacherinfo.html', {'class_list': class_list})
     else:

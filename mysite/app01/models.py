@@ -67,12 +67,7 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
-class Class(models.Model):
-    class_name = models.CharField(max_length=20)
 
-    class Meta:
-        managed = False
-        db_table = 'class'
 
 
 class DjangoAdminLog(models.Model):
@@ -117,6 +112,13 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+class Class(models.Model):
+    class_name = models.CharField(max_length=20)
+
+    class Meta:
+        managed = False
+        db_table = 'class'
 
 
 class Relationship(models.Model):

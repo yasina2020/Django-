@@ -10,7 +10,7 @@
     <p>班级：
         <select name="class_id" >
             {% for row in class_list %}
-                {% if row.id == result.class_id %}
+                {% if row.id == result.class_field_id %}
                     <option value="{{row.id}}" selected>{{row.class_name}}</option>
                 {% else %}
                     <option value="{{row.id}}">{{row.class_name}}</option>

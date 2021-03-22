@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>定位</title> 
+<style>
+p.pos_fixed
+{
+	position:fixed;
+	top:30px;
+	right:5px;
+}
+p.pos_fixed2
+{
+	position:fixed;
+	top:30px;
+	right:0px;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 5px;
+  background-color: #cae8ca;
+  border: 2px solid #4CAF50;
+}
+
+</style>
+</head>
+<body>
+    <table border="1px" style="border-color: hsl(4, 87%, 48%);">
+        <h6>position</h6>
+        <tr>
+            <th>static</th>
+            <td>静态定位的元素不会受到 top, bottom, left, right影响。<br>遵循正常的文档流对象。</td>
+        </tr>
+        <tr>
+            <th>fixed</th>
+            <td>元素的位置相对于浏览器窗口是固定位置。即使窗口是滚动的它也不会移动：<br>Fixed定位使元素的位置与文档流无关，因此不占据空间。可以和其他元素重叠。</td>
+        </tr>
+        <tr>
+            <th>relative </th>
+            <td>相对定位元素的定位是相对其正常（文档流）位置。<br>移动相对定位元素，但它原本所占的正常位置空间不会改变。<br>相对定位元素经常被用来作为绝对定位元素的容器块。</td>
+        </tr>
+        <tr>
+            <th>absolute</th>
+            <td>
+                绝对定位的元素的位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于 <i>元素html</i><br>
+                absolute 定位使元素的位置与文档流无关，因此不占据空间。<br>
+                absolute 定位的元素和其他元素重叠。
+            </td>
+        </tr>
+        <tr>
+            <th>sticky</th>
+            <td>position: sticky; 基于用户的滚动位置来定位。<br>
+                粘性定位的元素是依赖于用户的滚动，在 position:relative 与 position:fixed 定位之间切换。<br>
+                它的行为就像 position:relative; 而当页面滚动超出目标区域时，它的表现就像 position:fixed;，它会固定在目标位置。               
+                <br>元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。
+                <br>这个特定阈值指的是 top, right, bottom 或 left 之一，换言之，指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。</td>
+                <td>可以用来作侧边的导航栏</td>
+        </tr>
+    </table>
+
+
+<div style="float: left;">
+    <ifarme>
+        <p class="pos_fixed">Some more text</p>
+        <p class="pos_fixed2">Som2 more text</p>
+        
+        <p><b>注意:</b> IE7 和 IE8 支持只有一个 !DOCTYPE 指定固定值.</p>
+        <p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p><p>Some text</p>
+    </ifarme>
+</div>
+<hr>
+<div style="float: right;">
+    <p>尝试滚动页面。</p>
+    <p>注意: IE/Edge 15 及更早 IE 版本不支持 sticky 属性。</p>
+    
+    <div class="sticky">我是粘性定位!</div>
+    
+    <div style="padding-bottom:2000px">
+      <p>滚动我</p>
+      <p>来回滚动我</p>
+      <p>滚动我</p>
+      <p>来回滚动我</p>
+      <p>滚动我</p>
+      <p>来回滚动我</p>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

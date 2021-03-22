@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cce756a-33d8-4704-965c-b2c3a2e002ae" name="默认更改列表" comment="wu">
+      <change beforePath="$PROJECT_DIR$/.idea/Django_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Django_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app01/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app01/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/app01/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/app01/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/mysite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/mysite/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/templates/edit_student.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/templates/edit_student.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/templates/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/templates/student.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/mysite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/mysite/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +46,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -68,7 +69,7 @@
       <recent name="D:\GitHub\Django\1-27\静态网站" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.11">
+  <component name="RunManager" selected="Python.manage">
     <configuration name="11" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Django_test" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -84,6 +85,28 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/1-27/11.py" />
       <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Django_test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mysite" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mysite/manage.py" />
+      <option name="PARAMETERS" value="runserver 127.0.0.1:8000" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -113,8 +136,14 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.11" />
+      <item itemvalue="Python.manage" />
+      <item itemvalue="Python.socket脚本" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.manage" />
         <item itemvalue="Python.11" />
         <item itemvalue="Python.socket脚本" />
       </list>
@@ -148,6 +177,8 @@
       <workItem from="1613879407638" duration="9281000" />
       <workItem from="1613961342322" duration="652000" />
       <workItem from="1614137783447" duration="3461000" />
+      <workItem from="1614421956500" duration="1678000" />
+      <workItem from="1614483038163" duration="291000" />
     </task>
     <servers />
   </component>
@@ -163,6 +194,10 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="660" y="119" key="#Inspections/0.40.1920.1040@0.40.1920.1040" timestamp="1612148407678" />
+    <state x="383" y="143" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1614423366080">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="383" y="143" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1614423366080" />
     <state x="519" y="156" width="1139" height="838" key="CommitChangelistDialog2" timestamp="1612516237953">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
@@ -171,21 +206,25 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="808" y="249" key="FileChooserDialogImpl/0.40.1920.1040@0.40.1920.1040" timestamp="1613961387533" />
-    <state width="1437" height="319" key="GridCell.Tab.0.bottom" timestamp="1612191207262">
-      <screen x="0" y="40" width="1920" height="1040" />
+    <state width="1365" height="150" key="GridCell.Tab.0.bottom" timestamp="1614423640002">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
+    <state width="1365" height="150" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1614423640002" />
     <state width="1437" height="319" key="GridCell.Tab.0.bottom/0.40.1920.1040@0.40.1920.1040" timestamp="1612191207262" />
-    <state width="1437" height="319" key="GridCell.Tab.0.center" timestamp="1612191207262">
-      <screen x="0" y="40" width="1920" height="1040" />
+    <state width="1365" height="150" key="GridCell.Tab.0.center" timestamp="1614423640002">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
+    <state width="1365" height="150" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1614423640002" />
     <state width="1437" height="319" key="GridCell.Tab.0.center/0.40.1920.1040@0.40.1920.1040" timestamp="1612191207262" />
-    <state width="1437" height="319" key="GridCell.Tab.0.left" timestamp="1612191207262">
-      <screen x="0" y="40" width="1920" height="1040" />
+    <state width="1365" height="150" key="GridCell.Tab.0.left" timestamp="1614423640002">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
+    <state width="1365" height="150" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1614423640002" />
     <state width="1437" height="319" key="GridCell.Tab.0.left/0.40.1920.1040@0.40.1920.1040" timestamp="1612191207262" />
-    <state width="1437" height="319" key="GridCell.Tab.0.right" timestamp="1612191207262">
-      <screen x="0" y="40" width="1920" height="1040" />
+    <state width="1365" height="150" key="GridCell.Tab.0.right" timestamp="1614423640002">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
+    <state width="1365" height="150" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1614423640002" />
     <state width="1437" height="319" key="GridCell.Tab.0.right/0.40.1920.1040@0.40.1920.1040" timestamp="1612191207262" />
     <state width="1437" height="319" key="GridCell.Tab.1.bottom" timestamp="1612191207262">
       <screen x="0" y="40" width="1920" height="1040" />
@@ -203,9 +242,10 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state width="1437" height="319" key="GridCell.Tab.1.right/0.40.1920.1040@0.40.1920.1040" timestamp="1612191207262" />
-    <state x="452" y="131" key="SettingsEditor" timestamp="1613900083151">
-      <screen x="0" y="40" width="1920" height="1040" />
+    <state x="279" y="72" key="SettingsEditor" timestamp="1614423219707">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
+    <state x="279" y="72" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1614423219707" />
     <state x="452" y="131" key="SettingsEditor/0.40.1920.1040@0.40.1920.1040" timestamp="1613900083151" />
     <state x="683" y="389" width="876" height="367" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1613900082515">
       <screen x="0" y="40" width="1920" height="1040" />
@@ -213,8 +253,9 @@
     <state x="683" y="389" width="876" height="367" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.40.1920.1040@0.40.1920.1040" timestamp="1613900082515" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Django$11.coverage" NAME="11 Coverage Results" MODIFIED="1611727352744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/1-27" />
+    <SUITE FILE_PATH="coverage/Django_test$manage.coverage" NAME="manage Coverage Results" MODIFIED="1614423523977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mysite" />
     <SUITE FILE_PATH="coverage/Django$socket.coverage" NAME="socket脚本 Coverage Results" MODIFIED="1611726028042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/1-27" />
     <SUITE FILE_PATH="coverage/Django_test$11.coverage" NAME="11 Coverage Results" MODIFIED="1612190458183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/1-27" />
-    <SUITE FILE_PATH="coverage/Django$11.coverage" NAME="11 Coverage Results" MODIFIED="1611727352744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/1-27" />
   </component>
 </project>
